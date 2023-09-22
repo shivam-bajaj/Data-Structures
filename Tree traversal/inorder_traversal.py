@@ -38,7 +38,7 @@ def inorder_traversal_iterative(root):
     res=[] 
     stack=[]
     temp=root
-    while(len(stack)!=0 or temp!=None):
+    while(stack or temp):
         if temp is not None:
             stack.append(temp)
             temp=temp.left
@@ -48,6 +48,18 @@ def inorder_traversal_iterative(root):
             temp=temp.right
     return res
 
+def inorder(root):
+    res=[]
+    stack=[]
+    temp=root
+    while(temp or stack):
+        while temp:
+            stack.append(temp)
+            temp=temp.left
+        temp=stack.pop()
+        res.append(temp.value)
+        temp=temp.right
+    return res
 
 
 # Creating BST
@@ -77,3 +89,5 @@ print(f"using recurion: {a}")
 b = inorder_traversal_iterative(root)
 print(f'using iterative: {b}')
 
+c = inorder(root)
+print(f'using another iterative: {c}')
